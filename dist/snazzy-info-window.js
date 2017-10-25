@@ -228,6 +228,16 @@
                 }), true);
             }
 
+            if (_this.getWrapper()) {
+                _this.trackListener(google.maps.event.addDomListener(_this._html.wrapper, 'mouseout', function (e) {
+                    e.cancelBubble = true;
+                    if (e.stopPropagation) {
+                        e.stopPropagation();
+                    }
+                    _this.close();
+                }));
+            }
+
             // When using a position the default option for the offset is 0
             if (_this._position && !_this._opts.offset) {
                 _this._opts.offset = {
