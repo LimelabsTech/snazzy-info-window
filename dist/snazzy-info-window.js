@@ -228,7 +228,7 @@
                 }), true);
             }
 
-            _this.trackListener(google.maps.event.addListener(_this._html.wrapper, 'mouseout', function () {
+            _this.trackListener(google.maps.event.addListener(_this._html, 'mouseout', function () {
                 _this.close();
             }));
 
