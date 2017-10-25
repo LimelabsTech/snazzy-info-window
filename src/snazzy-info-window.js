@@ -143,7 +143,7 @@ export default class SnazzyInfoWindow extends google.maps.OverlayView {
         }
 
         // This listener remains active when the info window is closed.
-        if (google && this._marker && this._opts.openOnMarkerClick) {
+        if (google && this._marker && this._opts.openOnMarkerHover) {
             this.trackListener(google.maps.event.addListener(this._marker, 'hover', () => {
                 if (!this.getMap()) {
                     this.open();
