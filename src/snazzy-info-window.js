@@ -14,7 +14,7 @@ const _defaultOptions = {
     placement: 'top',
     pointer: true,
     openOnMarkerClick: false,
-    openOnMarkerHover: true,
+    openOnMarkerMouseover: true,
     closeOnMapClick: true,
     closeWhenOthersOpen: false,
     showCloseButton: true,
@@ -143,8 +143,8 @@ export default class SnazzyInfoWindow extends google.maps.OverlayView {
         }
 
         // This listener remains active when the info window is closed.
-        if (google && this._marker && this._opts.openOnMarkerHover) {
-            this.trackListener(google.maps.event.addListener(this._marker, 'hover', () => {
+        if (google && this._marker && this._opts.openOnMarkerMouseover) {
+            this.trackListener(google.maps.event.addListener(this._marker, 'mouseover', () => {
                 if (!this.getMap()) {
                     this.open();
                 }
