@@ -653,15 +653,16 @@
                         }));
                     }
 
-                    if (this.getWrapper()) {
-                        this.trackListener(google.maps.event.addDomListener(this._html.wrapper, 'mouseout', function (e) {
-                            e.cancelBubble = true;
-                            if (e.stopPropagation) {
-                                e.stopPropagation();
-                            }
-                            _this2.close();
-                        }));
-                    }
+                    // if (this.getWrapper()) {
+                    //     this.trackListener(google.maps.event.addDomListener(this._html.wrapper,
+                    //         'mouseout', (e) => {
+                    //             e.cancelBubble = true;
+                    //             if (e.stopPropagation) {
+                    //                 e.stopPropagation();
+                    //             }
+                    //             this.close();
+                    //         }));
+                    // }
 
                     // Stop the mouse event propagation
                     var mouseEvents = ['click', 'dblclick', 'rightclick', 'contextmenu', 'drag', 'dragend', 'dragstart', 'mousedown', 'mouseout', 'mouseover', 'mouseup', 'touchstart', 'touchend', 'touchmove', 'wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'];
