@@ -13,7 +13,8 @@ const _defaultShadow = {
 const _defaultOptions = {
     placement: 'top',
     pointer: true,
-    openOnMarkerClick: true,
+    openOnMarkerClick: false,
+    openOnMarkerHover: true,
     closeOnMapClick: true,
     closeWhenOthersOpen: false,
     showCloseButton: true,
@@ -61,12 +62,12 @@ function parseAttribute(attribute, defaultValue) {
         const match = re.exec(attribute);
         const number = match[1];
         const units = match[3] || 'px';
-        return { value: number * 1, units, original: attribute };
+        return {value: number * 1, units, original: attribute};
     }
     if (defaultValue) {
         return parseAttribute(defaultValue);
     }
-    return { original: defaultValue };
+    return {original: defaultValue};
 }
 
 // Set the html of a container. Should support both raw text and a single
@@ -141,6 +142,15 @@ export default class SnazzyInfoWindow extends google.maps.OverlayView {
             }), true);
         }
 
+        // This listener remains active when the info window is closed.
+        if (google && this._marker && this._opts.openOnMarkerClick) {
+            this.trackListener(google.maps.event.addListener(this._marker, 'hover', () => {
+                if (!this.getMap()) {
+                    this.open();
+                }
+            }), true);
+        }
+
         // When using a position the default option for the offset is 0
         if (this._position && !this._opts.offset) {
             this._opts.offset = {
@@ -190,7 +200,7 @@ export default class SnazzyInfoWindow extends google.maps.OverlayView {
     // Track the provided listener. A persistent listener means it remains
     // tracked even if the info window is closed.
     trackListener(listener, persistent) {
-        this._listeners.push({ listener, persistent });
+        this._listeners.push({listener, persistent});
     }
 
     // Will clear all listeners that are used during the open state.
@@ -340,13 +350,13 @@ export default class SnazzyInfoWindow extends google.maps.OverlayView {
                 this._html.contentWrapper.style.borderWidth = bWidth.value + bWidth.units;
             }
             bWidth = Math.round((this._html.contentWrapper.offsetWidth -
-                     this._html.contentWrapper.clientWidth) / 2.0);
+                this._html.contentWrapper.clientWidth) / 2.0);
             bWidth = parseAttribute(`${bWidth}px`, '0px');
 
             if (this._opts.pointer) {
                 // Calculate the pointer length
                 let pLength = Math.min(this._html.pointerBorder.offsetHeight,
-                                       this._html.pointerBorder.offsetWidth);
+                    this._html.pointerBorder.offsetWidth);
                 pLength = parseAttribute(`${pLength}px`, '0px');
 
                 let triangleDiff = Math.round(bWidth.value * (_root2 - 1));
