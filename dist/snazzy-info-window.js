@@ -220,7 +220,7 @@
             }
 
             // This listener remains active when the info window is closed.
-            if (google && _this._marker && _this._opts.openOnMarkerClick) {
+            if (google && _this._marker && _this._opts.openOnMarkerHover) {
                 _this.trackListener(google.maps.event.addListener(_this._marker, 'hover', function () {
                     if (!_this.getMap()) {
                         _this.open();
