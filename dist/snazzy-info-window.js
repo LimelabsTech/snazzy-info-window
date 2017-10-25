@@ -229,7 +229,7 @@
             }
 
             if (_this.getWrapper()) {
-                _this.trackListener(google.maps.event.addDomListener(_this._html.wrapper, 'mouseout', function (e) {
+                _this.trackListener(google.maps.event.addListener(_this._html.wrapper, 'mouseout', function (e) {
                     e.cancelBubble = true;
                     if (e.stopPropagation) {
                         e.stopPropagation();
