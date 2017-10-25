@@ -86,7 +86,8 @@
     var _defaultOptions = {
         placement: 'top',
         pointer: true,
-        openOnMarkerClick: true,
+        openOnMarkerClick: false,
+        openOnMarkerHover: true,
         closeOnMapClick: true,
         closeWhenOthersOpen: false,
         showCloseButton: true,
@@ -212,6 +213,15 @@
             // This listener remains active when the info window is closed.
             if (google && _this._marker && _this._opts.openOnMarkerClick) {
                 _this.trackListener(google.maps.event.addListener(_this._marker, 'click', function () {
+                    if (!_this.getMap()) {
+                        _this.open();
+                    }
+                }), true);
+            }
+
+            // This listener remains active when the info window is closed.
+            if (google && _this._marker && _this._opts.openOnMarkerClick) {
+                _this.trackListener(google.maps.event.addListener(_this._marker, 'hover', function () {
                     if (!_this.getMap()) {
                         _this.open();
                     }
