@@ -224,6 +224,7 @@
                 _this.trackListener(google.maps.event.addListener(_this._marker, 'mouseover', function () {
                     if (!_this.getMap()) {
                         _this.open();
+                        console.log(_this._marker);
                     }
                 }), true);
             }
