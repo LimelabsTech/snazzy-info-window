@@ -230,7 +230,7 @@
 
             if (google && _this._marker && _this._opts.openOnMarkerMouseover) {
                 _this.trackListener(google.maps.event.addListener(_this._marker, 'mouseout', function () {
-                    if (this._isOpen()) {
+                    if (this.isOpen()) {
                         this.close();
                     }
                 }), true);
